@@ -1,0 +1,16 @@
+/* .logo {
+  width: 115px;
+  height: 60px;
+  transform: scale(1.4);
+  margin-right: 30px;
+  margin-left: 10px;
+} */
+
+.navlogo {
+  width: 120px;
+  align-items: flex-start;
+}
+
+.navbar-brand {
+  margin-left: -90px;
+}

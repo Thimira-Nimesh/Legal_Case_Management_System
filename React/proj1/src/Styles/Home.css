@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;1,500&family=Titillium+Web:wght@300;400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+}
+
+.home-page-bg {
+  background-image: url("https://i.ibb.co/DQsMyhn/tt.jpg");
+  background-size: cover;
+  background-position: center;
+
+  height: 110vh;
+}
+
+.dark-transparent {
+  margin-top: 0px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.page-container {
+  height: 500vh;
+}
+
+.lawhead {
+  color: white;
+  font-family: "Cormorant Garamond", Sans-serif;
+  font-size: 50px;
+  font-weight: 800;
+  line-height: 1.2em;
+  letter-spacing: 0;
+}
+
+.left-margin {
+  margin-left: 50px;
+}
+
+.homelogo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homelogo img {
+  max-width: 30%;
+}
+
+.gold-text {
+  color: gold;
+}
+
+.smalltext {
+  font-size: 12px;
+}
+.margin1 {
+  margin-left: 12px;
+}
+
+.margin2 {
+  margin-left: 12px;
+  margin-right: -94px;
+}
+
+.logo-icon {
+  width: 50px;
+  height: 50px;
+}
+
+.space {
+  margin-left: 12px;
+}
+
+.sp {
+  margin-left: -85px;
+}
+
+.logo-icon2 {
+  width: 50px;
+  height: 50px;
+}
+
+.logo-icon3 {
+  width: 50px;
+  height: 50px;
+}
+
+.dark-transparent2 {
+  background-image: url("https://i.ibb.co/SRnZ45s/pexels-guillaume-meurice-2529179.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.iconcontainer {
+  margin-left: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.dark-transparent3 {
+  margin-top: 3px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.type-box {
+  margin-left: 100px;
+  margin-top: 60px;
+  margin-top: 17px;
+}
+
+.type-box2 {
+  margin-left: 20px;
+  margin-right: -20px;
+  margin-top: 60px;
+  margin-bottom: 17px;
+}
+
+.comimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.compara {
+  text-align: center;
+}
+
+.comimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ------------------------------------------ */
+
+.type-box3 {
+  margin-left: 120px;
+  margin-right: -120px;
+  margin-top: 60px;
+  margin-bottom: 17px;
+}
+
+.labimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.labpara {
+  text-align: center;
+}
+
+.labimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ------------------------------------------------------ */
+
+.type-box4 {
+  margin-left: 120px;
+  margin-right: -120px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.famimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.fampara {
+  text-align: center;
+}
+
+.famimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ----------------------------------------------------------- */
+
+.type-box5 {
+  margin-left: 180px;
+  margin-right: -180px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.civilimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.civilpara {
+  text-align: center;
+}
+
+.civilimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ---------------------------------------------------------- */
+
+.type-box6 {
+  margin-left: 240px;
+  margin-right: -240px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.crimimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.crimpara {
+  text-align: center;
+}
+
+.crimimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ---------------------------------------------------- */
+
+.type-box7 {
+  margin-left: 120px;
+  margin-right: -120px;
+  margin-top: 40px;
+  margin-bottom: 80px;
+}
+
+.cybimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.cybpara {
+  text-align: center;
+}
+
+.cybimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* ---------------------------------------------------------- */
+
+.type-box8 {
+  margin-left: 170px;
+  margin-right: -190px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.envimg {
+  width: 340px;
+  margin-top: -23px;
+}
+
+.envpara {
+  text-align: center;
+}
+
+.envimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
+
+/* -------------------------------------------- */
+
+.type-box9 {
+  margin-left: 250px;
+  margin-right: -240px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+.intimg {
+  width: 320px;
+  margin-top: -23px;
+}
+
+.intpara {
+  text-align: center;
+}
+
+.intimg:hover {
+  transform: scale(1.1);
+  transition-duration: 0.5s;
+}
