@@ -1,49 +1,49 @@
-function Validation(values) {
+function Validation(initialValues) {
   let error = {};
   const email_pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const nic_pattern = /^[0-9]{9}[vVxX]$/;
 
-  if (values.name === "") {
-    error.name = " Name should not be empty";
+  if (initialValues.Name === "") {
+    error.Name = " Name should not be empty";
   } else {
-    error.name = "";
+    error.Name = "";
   }
 
-  if (values.address === "") {
-    error.address = " Address should not be empty";
+  if (initialValues.Address === "") {
+    error.Address = " Address should not be empty";
   } else {
-    error.address = "";
+    error.Address = "";
   }
 
-  if (values.contact === "") {
-    error.contact = " Address should not be empty";
+  if (initialValues.Contact === "") {
+    error.Contact = " Contact should not be empty";
   } else {
-    error.contact = "";
+    error.Contact = "";
   }
 
-  if (values.nic === "") {
-    error.nic = " NIC field should not be empty";
-  } else if (!nic_pattern.test(values.nic)) {
-    error.nic = "NIC Didn't match";
+  if (initialValues.NIC === "") {
+    error.NIC = " NIC field should not be empty";
+  } else if (!nic_pattern.test(initialValues.NIC)) {
+    error.NIC = "NIC Didn't match";
   } else {
-    error.nic = "";
+    error.NIC = "";
   }
 
-  if (values.email === "") {
-    error.email = "Email should not be empty";
-  } else if (!email_pattern.test(values.email)) {
-    error.email = "Email Didn't match";
+  if (initialValues.Email === "") {
+    error.Email = "Email should not be empty";
+  } else if (!email_pattern.test(initialValues.Email)) {
+    error.Email = "Email Didn't match";
   } else {
-    error.email = "";
+    error.Email = "";
   }
 
-  if (values.password === "") {
-    error.password = "Password should not be empty";
-  } else if (!password_pattern.test(values.password)) {
-    error.password = "Password didn't match";
+  if (initialValues.Password === "") {
+    error.Password = "Password should not be empty";
+  } else if (!password_pattern.test(initialValues.Password)) {
+    error.Password = "Password didn't match";
   } else {
-    error.password = "";
+    error.Password = "";
   }
   return error;
 }

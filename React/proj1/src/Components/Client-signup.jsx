@@ -4,179 +4,179 @@ import Validation from "./ClientsignupValidation";
 import { Col, Form, Button } from "react-bootstrap";
 import axios from "axios";
 import "../Styles/Clientsignup.css";
+import * as Yup from "yup";
+import { Formik, Field, ErrorMessage } from "formik";
 
 function ClientForm() {
-  const [values, setValues] = useState({
-    name: "",
-    address: "",
-    contact: "",
-    nic: "",
-    email: "",
-    password: "",
-  });
+  // const [values, setValues] = useState({
+  //   name: "",
+  //   address: "",
+  //   contact: "",
+  //   nic: "",
+  //   email: "",
+  //   password: "",
+  // });
 
   // const navigate = useNavigate();
 
-  const [errors, setErrors] = useState({});
+  // const [errors, setErrors] = useState({});
 
-  const handleInput = (event) => {
-    setValues((prev) => ({
-      ...prev,
-      [event.target.name]: [event.target.value],
-    }));
+  // const handleInput = (event) => {
+  //   setValues((prev) => ({
+  //     ...prev,
+  //     [event.target.name]: [event.target.value],
+  //   }));
+  // };
+
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+
+  // const err = Validation(values); //////
+  // setErrors(err);
+  // if (
+  //   errors.name === "" &&
+  //   errors.address === "" &&
+  //   errors.contact === "" &&
+  //   errors.nic === "" &&
+  //   errors.email === "" &&
+  //   errors.password === ""
+  // ) {
+  //   axios.post("http://localhost:3001/clients").then((response) => {
+  //     console.log("worked");
+  //   });
+  // {
+  //   axios
+  //     .post("http://localhost:8081/clientform", values) ////////
+  //     .then((res) => {
+  //       const token = res.data.token;
+  //       localStorage.setItem("user-info", token);
+  //       alert("Successfully Registered");
+  //       navigate("/");
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
+  const initialValues = {
+    Name: "",
+    Address: "",
+    Contact: "",
+    NIC: "",
+    Email: "",
+    Password: "",
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // const validationSchema = Yup.object().shape({
+  //   name: Yup.string().required("You must input the Name"),
+  //   address: Yup.string().required("You must input the Address"),
+  //   contact: Yup.string().required("You must input the Contact Details"),
+  //   nic: Yup.string().required("You must input the NIC"),
+  //   email: Yup.string().required("You must input the Email"),
+  //   password: Yup.string()
+  //     .min(3)
+  //     .max(15)
+  //     .required("You must input the Password"),
+  // });
 
-    const err = Validation(values); //////
-    setErrors(err);
-    if (
-      errors.name === "" &&
-      errors.address === "" &&
-      errors.contact === "" &&
-      errors.nic === "" &&
-      errors.email === "" &&
-      errors.password === ""
-    ) {
-      axios.post("http://localhost:3001/clients").then((response) => {
-        console.log("worked");
-      });
-      // {
-      //   axios
-      //     .post("http://localhost:8081/clientform", values) ////////
-      //     .then((res) => {
-      //       const token = res.data.token;
-      //       localStorage.setItem("user-info", token);
-      //       alert("Successfully Registered");
-      //       navigate("/");
-      //     })
-      //     .catch((err) => console.log(err));
-      // }
-    }
+  const onSubmit = (data) => {
+    axios.post("http://localhost:3001/clients", data).then((response) => {
+      //setlistofclients(response.data);
+      console.log(response.data);
+    });
+  };
 
-    // async function ClientSignup() {
-    //   let item = { fname, lname, address, nic, email, password }; ////////
-    //   console.log(item);
+  return (
+    <Col md={6}>
+      <div className="Clientsign-box text-center p-4">
+        <h1 style={{ fontFamily: "Poppins', sans-serif" }}>
+          Client Registration Form
+        </h1>
+        <br />
+        <Formik initialValues={initialValues} onSubmit={onSubmit}>
+          <Form className="form">
+            {/* <Form.Group controlId="Name"> */}
+            <label>
+              <strong> Name</strong>
+              <br></br>
+            </label>
+            {/* <Form.Control type="text" placeholder="Enter Name" name="Name" /> */}
+            <Field id="inputcreateclient" name="Name" placeholder="User Name" />
+            {/* </Form.Group> */}
 
-    //   // event.preventDefault();
-
-    //   const err = Validation(item); //////
-    //   setErrors(err);
-    //   if (
-    //     errors.fname === "" &&
-    //     errors.lname === "" &&
-    //     errors.address === "" &&
-    //     errors.nic === "" &&
-    //     errors.email === "" &&
-    //     errors.password === ""
-    //   ) {
-    //     let result = await fetch("http://localhost:8081/clientform", {
-    //       method: "POST",
-    //       body: JSON.stringify(item),
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //         Accept: "application/json",
-    //       },
-    //     });
-    //     result = await result.json();
-    //     localStorage.setItem("user-info", JSON.stringify(result));
-    //     navigate("/home");
-    //   }
-    // }
-
-    return (
-      <Col md={0}>
-        <div className="Clientsign-box text-center p-4">
-          <h1 style={{ fontFamily: "Poppins', sans-serif" }}>
-            Client Registration Form
-          </h1>
-          <br />
-          <Form className="form" action="" onSubmit={handleSubmit}>
-            <Form.Group controlId="name">
-              <Form.Label>
-                <strong> Name</strong>
-              </Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Name"
-                name="name"
-                onChange={handleInput}
-              />
-              {errors.name && (
-                <span className="text-danger">{errors.name}</span>
-              )}
-            </Form.Group>
-
-            <Form.Group controlId="address">
-              <Form.Label>
-                <strong>Address</strong>
-              </Form.Label>
-              <Form.Control
+            {/* <Form.Group controlId="Address"> */}
+            <label>
+              <strong> Address</strong>
+              <br></br>
+            </label>
+            {/* <Form.Control
                 type="text"
                 placeholder="Enter Address"
-                name="address"
-                onChange={handleInput}
-              />
-              {errors.address && (
-                <span className="text-danger">{errors.address}</span>
-              )}
-            </Form.Group>
+                name="Address"
+              /> */}
+            <Field
+              id="inputcreateclient"
+              name="Address"
+              placeholder="Address"
+            />
+            {/* </Form.Group> */}
 
-            <Form.Group controlId="contact">
-              <Form.Label>
-                <strong>Contact</strong>
-              </Form.Label>
-              <Form.Control
+            {/* <Form.Group controlId="Contact"> */}
+            <label>
+              <strong> Contact</strong>
+              <br></br>
+            </label>
+            {/* <Form.Control
                 type="text"
                 placeholder="Enter Contact Details"
-                name="contact"
-                onChange={handleInput}
-              />
-              {errors.contact && (
-                <span className="text-danger">{errors.contact}</span>
-              )}
-            </Form.Group>
+                name="Contact"
+              /> */}
+            <Field
+              id="inputcreateclient"
+              name="Contact"
+              placeholder="Contact"
+            />
+            {/* </Form.Group> */}
 
-            <Form.Group controlId="nic">
-              <Form.Label>
-                <strong>National ID Number</strong>
-              </Form.Label>
-              <Form.Control
+            {/* <Form.Group controlId="NIC"> */}
+            <label>
+              <strong> NIC</strong>
+              <br></br>
+            </label>
+            {/* <Form.Control
                 type="int"
                 placeholder="Enter National ID number"
-                name="nic"
-                onChange={handleInput}
-              />
-              {errors.nic && <span className="text-danger">{errors.nic}</span>}
-            </Form.Group>
-            <Form.Group controlId="email">
-              <Form.Label>
-                <strong>Email address</strong>
-              </Form.Label>
-              <Form.Control
+                name="NIC"
+              /> */}
+            <Field id="inputcreateclient" name="NIC" placeholder="NIC" />
+            {/* </Form.Group> */}
+
+            {/* <Form.Group controlId="Email"> */}
+            <label>
+              <strong> </strong>
+              <br></br>
+            </label>
+            {/* <Form.Control
                 type="email"
                 placeholder="Enter email"
-                name="email"
-                onChange={handleInput}
-              />
-              {errors.email && (
-                <span className="text-danger">{errors.email}</span>
-              )}
-            </Form.Group>
-            <Form.Group controlId="password">
+                name="Email"
+              /> */}
+            <Field id="inputcreateclient" name="Email" placeholder="Email" />
+            {/* </Form.Group> */}
+
+            <Form.Group controlId="Password">
               <Form.Label>
                 <strong>Password</strong>
+                <br></br>
               </Form.Label>
-              <Form.Control
+              {/* <Form.Control
                 type="password"
                 placeholder="Password"
-                name="password"
-                onChange={handleInput}
+                name="Password"
+              /> */}
+              <Field
+                id="inputcreateclient"
+                name="Password"
+                placeholder="Password"
               />
-              {errors.password && (
-                <span className="text-danger">{errors.password}</span>
-              )}
             </Form.Group>
             <br />
             <Button
@@ -194,10 +194,10 @@ function ClientForm() {
               </Link>
             </div>
           </Form>
-        </div>
-      </Col>
-    );
-  };
+        </Formik>
+      </div>
+    </Col>
+  );
 }
 
 export default ClientForm;

@@ -79,7 +79,7 @@ const Login = () => {
                 <br />
                 <div>
                   <p>Don't have an account?</p>
-                  <Link to="/selection" className="btn btn-secondary">
+                  <Link to="/clientreg2" className="btn btn-secondary">
                     Sign Up
                   </Link>
                 </div>
