@@ -18,12 +18,18 @@ import DailySchedule from "./Components/DailySchedule";
 // import PrivateRoute from "./Components/PrivateRoute";
 // import Home from "./Components/Home";
 
+import Test from "./Components/Test";
+import Clientreg2 from "./Components/Clientreg2";
+import Lawyerreg2 from "./Components/Lawyerreg2";
+
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
-        {/* <Route path="/home" element={<PrivateRoute element={Home} />} /> */}
+        <Route path="/" element={<Test />} />
+        <Route path="/clientreg2" element={<Clientreg2 />} />
+        <Route path="/lawyerreg2" element={<Lawyerreg2 />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/cases" element={<Cases />} />
         <Route path="/about" element={<About />} />

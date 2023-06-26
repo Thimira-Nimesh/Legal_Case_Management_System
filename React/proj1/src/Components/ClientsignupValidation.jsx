@@ -4,20 +4,22 @@ function Validation(values) {
   const password_pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   const nic_pattern = /^[0-9]{9}[vVxX]$/;
 
-  if (values.fname === "") {
-    error.fname = " First Name should not be empty";
+  if (values.name === "") {
+    error.name = " Name should not be empty";
   } else {
-    error.fname = "";
+    error.name = "";
   }
-  if (values.lname === "") {
-    error.lname = " Last Name should not be empty";
-  } else {
-    error.lname = "";
-  }
+
   if (values.address === "") {
     error.address = " Address should not be empty";
   } else {
     error.address = "";
+  }
+
+  if (values.contact === "") {
+    error.contact = " Address should not be empty";
+  } else {
+    error.contact = "";
   }
 
   if (values.nic === "") {

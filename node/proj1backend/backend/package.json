@@ -20,6 +20,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.4.0",
     "nodemon": "^2.0.22",
+    "path-to-regexp": "^6.2.1",
     "sequelize": "^6.32.1",
     "sequelize-cli": "^6.6.1"
   }
