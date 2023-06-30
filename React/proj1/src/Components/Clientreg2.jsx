@@ -1,54 +1,57 @@
-import { React, useState } from "react";
-import { Formik, Form, Field } from "formik";
-
+import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+// import * as Yup from "yup";
 import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Clientreg2.css";
+import "../Components/ClientsignupValidation";
 
 function Clientreg2() {
+  const navigate = useNavigate();
   const [userType, setUserType] = useState("");
   const initialValues = {
-    Name: "",
-    Address: "",
-    Contact: "",
-    NIC: "",
-    Email: "",
-    Password: "",
+    name: "",
+    address: "",
+    contact: "",
+    nic: "",
+    email: "",
+    username: "",
+    password: "",
   };
 
-  //   const [errors, setErrors] = useState({});
+  //   const validationSchema = Yup.object({
+  //     name: Yup.string().required("Name is required"),
+  //     address: Yup.string().required("Address is required"),
+  //     contact: Yup.string().required("Contact is required"),
+  //     nic: Yup.string().required("NIC is required"),
+  //     // userType: Yup.string().required("User Type is required"),
+  //     email: Yup.string()
+  //       .email("Invalid email address")
+  //       .required("Email is required"),
+  //     password: Yup.string().required("Password is required"),
+  //   });
 
   const onSubmit = (data, { resetForm }) => {
-    // const err = Validation(initialValues);
-    // setErrors(err);
-
-    if (
-      userType === "client"
-      //   &&
-      //   errors.Name === "" &&
-      //   errors.Address === "" &&
-      //   errors.Contact === "" &&
-      //   errors.NIC === "" &&
-      //   errors.Email === "" &&
-      //   errors.Password === ""
-    ) {
+    if (userType === "client") {
+      axios.post("http://localhost:3001/auth", data).then((response) => {
+        console.log(response.data);
+        resetForm();
+        navigate("/login");
+      });
+    } else if (userType === "lawyer") {
       axios.post("http://localhost:3001/clients", data).then((response) => {
         console.log(response.data);
         resetForm();
-      });
-    } else if (userType === "lawyer") {
-      axios.post("http://localhost:3001/lawyers", data).then((response) => {
-        console.log(response.data);
-        resetForm();
+        navigate("/login");
       });
     }
   };
 
   return (
     <div className="main2">
-      <div className=" gradient-border vh-60">
-        <Container className=" vh-60">
+      <div className="gradient-border vh-60">
+        <Container className="vh-60">
           <Row className="justify-content-center">
             <Col md={6}>
               <div className="loginlogo w-45">
@@ -63,9 +66,7 @@ function Clientreg2() {
             <Col md={6}>
               <div
                 className="Clientsign-box text-left p-1"
-                style={{
-                  marginLeft: "50px",
-                }}
+                style={{ marginLeft: "50px" }}
               >
                 <h1
                   className="text-center mt-4"
@@ -78,83 +79,85 @@ function Clientreg2() {
                   <div className="createclientpage">
                     <Formik
                       initialValues={{ ...initialValues, userType: "" }}
+                      //   validationSchema={validationSchema}
                       onSubmit={onSubmit}
                     >
                       <Form className="formContainer">
                         <div className="form-group">
-                          <label htmlFor="inputcreateclient" className="">
+                          <label htmlFor="inputcreateclient">
                             <strong>Name:</strong>
                           </label>
-
                           <br />
-
                           <Field
                             id="inputcreateclient"
-                            name="Name"
-                            placeholder="User Name"
+                            name="name"
+                            placeholder="Name"
                             className="form-control"
                           />
-                          {/* {errors.Name && (
-                            <span className="text-danger">{errors.Name}</span>
-                          )} */}
+                          <ErrorMessage
+                            name="name"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        <br></br>
+                        <br />
 
                         <div className="form-group">
                           <label>
                             <strong>Address:</strong>
                           </label>
-                          <br></br>
-
+                          <br />
                           <Field
                             id="inputcreateclient"
-                            name="Address"
+                            name="address"
                             placeholder="Address"
                             className="form-control"
                           />
-                          {/* {errors.Address && (
-                            <span className="text-danger">
-                              {errors.Address}
-                            </span>
-                          )} */}
+                          <ErrorMessage
+                            name="address"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        <br></br>
+                        <br />
 
                         <div className="form-group">
                           <label>
                             <strong>Contact:</strong>
                           </label>
-                          <br></br>
-
+                          <br />
                           <Field
                             id="inputcreateclient"
-                            name="Contact"
+                            name="contact"
                             placeholder="Contact"
                             className="form-control"
                           />
+                          <ErrorMessage
+                            name="contact"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        {/* {errors.Contact && (
-                          <span className="text-danger">{errors.Contact}</span>
-                        )} */}
-                        <br></br>
+                        <br />
 
                         <div className="form-group">
                           <label>
                             <strong>NIC:</strong>
                           </label>
-                          <br></br>
-
+                          <br />
                           <Field
                             id="inputcreateclient"
-                            name="NIC"
+                            name="nic"
                             placeholder="Enter NIC Number"
                             className="form-control"
                           />
-                          {/* {errors.NIC && (
-                            <span className="text-danger">{errors.NIC}</span>
-                          )} */}
+                          <ErrorMessage
+                            name="nic"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        <br></br>
+                        <br />
 
                         <div className="form-group">
                           <label>
@@ -172,48 +175,72 @@ function Clientreg2() {
                             <option value="client">Client</option>
                             <option value="lawyer">Lawyer</option>
                           </select>
+                          <ErrorMessage
+                            name="userType"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        <br></br>
+                        <br />
 
                         <div className="form-group ml-3">
-                          <label className="">
+                          <label>
                             <strong>Email:</strong>
                           </label>
-                          <br></br>
-
+                          <br />
                           <Field
                             id="inputcreateclient"
-                            name="Email"
+                            name="email"
                             placeholder="Email"
                             className="form-control"
                           />
+                          <ErrorMessage
+                            name="email"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        {/* {errors.Email && (
-                          <span className="text-danger">{errors.Email}</span>
-                        )} */}
+                        <br />
+
+                        <div className="form-group">
+                          <label>
+                            <strong>Username:</strong>
+                          </label>
+                          <br />
+                          <Field
+                            id="inputcreateclient"
+                            name="username"
+                            placeholder="Username"
+                            className="form-control"
+                          />
+                          <ErrorMessage
+                            name="username"
+                            component="div"
+                            className="error"
+                          />
+                        </div>
                         <br></br>
 
                         <div className="form-group">
                           <label>
                             <strong>Password:</strong>
                           </label>
-                          <br></br>
-
+                          <br />
                           <Field
                             id="inputcreateclient"
-                            name="Password"
+                            name="password"
                             type="password"
                             placeholder="Password"
                             className="form-control"
                           />
-                          {/* {errors.Password && (
-                            <span className="text-danger">
-                              {errors.Password}
-                            </span>
-                          )} */}
+                          <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="error"
+                          />
                         </div>
-                        <br></br>
-                        <br></br>
+                        <br />
+                        <br />
 
                         <Button
                           variant="primary"
@@ -222,8 +249,8 @@ function Clientreg2() {
                         >
                           Signup
                         </Button>
-                        <br></br>
-                        <br></br>
+                        <br />
+                        <br />
                         <div>
                           <p>Already have an account?</p>
                           <Link to="/login" className="btn btn-secondary">

@@ -187,7 +187,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="viewbtn btn btn-warning rounded-pill justify-content-center "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/Corporate_law")

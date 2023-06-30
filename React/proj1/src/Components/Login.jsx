@@ -1,12 +1,34 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Container, Row, Col, Form, Button } from "react-bootstrap";
+import axios from "axios";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import "../Styles/Login.css";
-import "./LoginValidation";
+import { Link, useNavigate } from "react-router-dom";
 
-const Login = () => {
+function Login() {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const login = () => {
+    const data = { username: username, password: password };
+    axios
+      .post("http://localhost:3001/auth/login", data)
+      .then((response) => {
+        if (response.data.error) {
+          alert(response.data.error);
+        } else {
+          const accessToken = response.data.accessToken;
+          sessionStorage.setItem("accessToken", accessToken);
+          navigate("/home");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
-    <div className=" gradient-border vh-60">
+    <div className=" gradient-border vh-60  outline">
       <Container className=" vh-60">
         <Row className="justify-content-center">
           <Col md={6}>
@@ -20,46 +42,42 @@ const Login = () => {
             </div>
           </Col>
           <Col md={6}>
-            <div className="login-box text-center p-4 ">
-              <h1 style={{ fontFamily: "Poppins', sans-serif" }}>
-                <strong>Login</strong>
-              </h1>
-              <br />
-              <Form className="form" action="">
-                <Form.Group controlId="email">
-                  <Form.Label>
-                    <strong>Email address</strong>
-                  </Form.Label>
-                  <Form.Control
-                    type="email"
-                    placeholder="Enter email"
-                    name="email"
-                  />
-                  {/* {errors.email && (
-                    <span className="text-danger">{errors.email}</span>
-                  )} */}
-                </Form.Group>
-                <br />
-                <Form.Group controlId="password">
-                  <Form.Label>
-                    <strong>Password</strong>
-                  </Form.Label>
-                  <Form.Control
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                  />
-                  {/* {errors.password && (
-                    <span className="text-danger">{errors.password}</span>
-                  )} */}
-                </Form.Group>
-                <br />
-                <Button
-                  variant="primary"
-                  type="submit"
-                  className="btn btn-success w-100"
-                >
-                  Sign In
+            <div className="login-box  p-4 ">
+              <div className="text-center">
+                <h1 style={{ fontFamily: "Poppins', sans-serif" }}>
+                  <strong>Login</strong>
+                </h1>
+              </div>
+              <br></br>
+              <div className="loginContainer">
+                <label>
+                  <strong>Username:</strong>
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  onChange={(event) => {
+                    setUsername(event.target.value);
+                  }}
+                />
+                <br></br>
+                <br></br>
+                <label>
+                  <strong>Password:</strong>
+                </label>
+                <input
+                  type="password"
+                  className="form-control"
+                  onChange={(event) => {
+                    setPassword(event.target.value);
+                  }}
+                />
+                <br></br>
+                <br></br>
+
+                <Button className="btn btn-success w-100" onClick={login}>
+                  {" "}
+                  Login{" "}
                 </Button>
                 <div className="mt-3">
                   <p>Or sign in with:</p>
@@ -83,12 +101,13 @@ const Login = () => {
                     Sign Up
                   </Link>
                 </div>
-              </Form>
+              </div>
             </div>
           </Col>
         </Row>
       </Container>
     </div>
   );
-};
+}
+
 export default Login;

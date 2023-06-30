@@ -16,3 +16,7 @@
   background: linear-gradient(to right, #83807e, #da799e);
   border-radius: 10px;
 }
+
+.error {
+  color: red;
+}
