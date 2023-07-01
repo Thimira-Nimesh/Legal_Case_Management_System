@@ -18,7 +18,7 @@ function Login() {
           alert(response.data.error);
         } else {
           const accessToken = response.data.accessToken;
-          sessionStorage.setItem("accessToken", accessToken);
+          localStorage.setItem("accessToken", accessToken);
           navigate("/home");
         }
       })
