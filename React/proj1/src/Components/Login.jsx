@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import "../Styles/Login.css";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../Helpers/AuthContext";
 
 function Login() {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { setAuthState } = useContext(AuthContext);
 
   const login = () => {
     const data = { username: username, password: password };
@@ -19,6 +21,7 @@ function Login() {
         } else {
           const accessToken = response.data.accessToken;
           localStorage.setItem("accessToken", accessToken);
+          setAuthState(true);
           navigate("/home");
         }
       })
