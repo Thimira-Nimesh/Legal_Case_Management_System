@@ -17,7 +17,6 @@ import Judgehome from "./Components/Judgehome";
 import DailySchedule from "./Components/DailySchedule";
 // import PrivateRoute from "./Components/PrivateRoute";
 // import Home from "./Components/Home";
-
 import Test from "./Components/Test";
 import Clientreg2 from "./Components/Clientreg2";
 import Lawyerreg2 from "./Components/Lawyerreg2";
@@ -25,9 +24,14 @@ import "../src/Helpers/AuthContext";
 import { AuthContext } from "../src/Helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Admin from "./Components/Admin";
 
 function App() {
-  const [authState, setAuthState] = useState(false);
+  const [authState, setAuthState] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
 
   useEffect(() => {
     axios
@@ -38,13 +42,17 @@ function App() {
       })
       .then((response) => {
         if (response.data.error) {
-          setAuthState(false);
+          setAuthState({ ...authState, ststus: false });
         } else {
-          setAuthState(true);
+          setAuthState({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
         }
       });
     setAuthState(true);
-  }, []);
+  });
 
   return (
     <div className="App">
@@ -55,6 +63,7 @@ function App() {
           <Route path="/lawyerreg2" element={<Lawyerreg2 />} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
           <Route path="/cases" element={<Cases />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

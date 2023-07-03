@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 // import * as Yup from "yup";
 import axios from "axios";
@@ -9,13 +9,14 @@ import "../Components/ClientsignupValidation";
 
 function Clientreg2() {
   const navigate = useNavigate();
-  const [userType, setUserType] = useState("");
+  // const [usertype, setusertype] = useState("");
   const initialValues = {
     name: "",
     address: "",
     contact: "",
     nic: "",
     email: "",
+    usertype: "",
     username: "",
     password: "",
   };
@@ -25,7 +26,7 @@ function Clientreg2() {
   //     address: Yup.string().required("Address is required"),
   //     contact: Yup.string().required("Contact is required"),
   //     nic: Yup.string().required("NIC is required"),
-  //     // userType: Yup.string().required("User Type is required"),
+  //     // usertype: Yup.string().required("User Type is required"),
   //     email: Yup.string()
   //       .email("Invalid email address")
   //       .required("Email is required"),
@@ -33,13 +34,14 @@ function Clientreg2() {
   //   });
 
   const onSubmit = (data, { resetForm }) => {
-    if (userType === "client") {
+    console.log(data);
+    if (data.usertype === "client") {
       axios.post("http://localhost:3001/auth", data).then((response) => {
         console.log(response.data);
         resetForm();
         navigate("/login");
       });
-    } else if (userType === "lawyer") {
+    } else if (data.usertype === "lawyer") {
       axios.post("http://localhost:3001/clients", data).then((response) => {
         console.log(response.data);
         resetForm();
@@ -78,7 +80,7 @@ function Clientreg2() {
                 <div className="ml-8">
                   <div className="createclientpage">
                     <Formik
-                      initialValues={{ ...initialValues, userType: "" }}
+                      initialValues={{ ...initialValues }}
                       //   validationSchema={validationSchema}
                       onSubmit={onSubmit}
                     >
@@ -164,19 +166,17 @@ function Clientreg2() {
                             <strong>User Type:</strong>
                           </label>
                           <br />
-                          <select
-                            id="inputcreateclient"
-                            name="userType"
-                            value={userType}
-                            onChange={(e) => setUserType(e.target.value)}
+                          <Field
+                            as="select"
+                            name="usertype" // Add the name attribute here
                             className="form-control"
                           >
-                            <option value="">Select User Type</option>
+                            <option value="Select one">Choose One</option>
                             <option value="client">Client</option>
                             <option value="lawyer">Lawyer</option>
-                          </select>
+                          </Field>
                           <ErrorMessage
-                            name="userType"
+                            name="usertype"
                             component="div"
                             className="error"
                           />

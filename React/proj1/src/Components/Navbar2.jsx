@@ -4,11 +4,17 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "../Styles/Navbar2.css";
 import { useNavigate } from "react-router-dom";
+// import { AuthContext } from "../src/Helpers/AuthContext";
+import { useState } from "react";
+// import axios from "axios";
 
 function Navbar2() {
+  const [authState, setAuthState] = useState(false);
+
   const navigate = useNavigate();
   function logout() {
-    localStorage.clear();
+    localStorage.removeItem("accessToken");
+    setAuthState({ ...authState, ststus: false });
     navigate("/");
   }
 
@@ -36,9 +42,6 @@ function Navbar2() {
               <NavDropdown.Item href="#action/3.2">Lawyers</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Judges</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav>
@@ -46,9 +49,7 @@ function Navbar2() {
               More deets
             </Nav.Link>
             <NavDropdown title="Username" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1" onClick={logout}>
-                logout
-              </NavDropdown.Item>
+              <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">My Profile</NavDropdown.Item>
             </NavDropdown>
           </Nav>

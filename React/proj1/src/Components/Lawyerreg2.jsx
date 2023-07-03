@@ -1,6 +1,6 @@
 import { React } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import * as Yup from "yup";
+// import * as Yup from "yup";
 import axios from "axios";
 
 function Lawyerreg2() {
@@ -13,17 +13,17 @@ function Lawyerreg2() {
     Password: "",
   };
 
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("You must input the Name"),
-    address: Yup.string().required("You must input the Address"),
-    contact: Yup.string().required("You must input the Contact Details"),
-    nic: Yup.string().required("You must input the NIC"),
-    email: Yup.string().required("You must input the Email"),
-    password: Yup.string()
-      .min(3)
-      .max(15)
-      .required("You must input the Password"),
-  });
+  // const validationSchema = Yup.object().shape({
+  //   name: Yup.string().required("You must input the Name"),
+  //   address: Yup.string().required("You must input the Address"),
+  //   contact: Yup.string().required("You must input the Contact Details"),
+  //   nic: Yup.string().required("You must input the NIC"),
+  //   email: Yup.string().required("You must input the Email"),
+  //   password: Yup.string()
+  //     .min(3)
+  //     .max(15)
+  //     .required("You must input the Password"),
+  // });
 
   const onSubmit = (data) => {
     axios.post("http://localhost:3001/lawyers", data).then((response) => {

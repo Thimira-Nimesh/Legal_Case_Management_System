@@ -54,7 +54,8 @@ const { sign } = require("jsonwebtoken");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
 router.post("/", async (req, res) => {
-  const { name, address, contact, nic, email, username, password } = req.body;
+  const { name, address, contact, nic, email, username, password, usertype } =
+    req.body;
   bcrypt.hash(password, 10).then((hash) => {
     Users.create({
       name: name,
@@ -62,6 +63,7 @@ router.post("/", async (req, res) => {
       contact: contact,
       nic: nic,
       email: email,
+      usertype: usertype,
       username: username,
       password: hash,
     });
@@ -86,7 +88,7 @@ router.post("/login", async (req, res) => {
     }
 
     const accessToken = sign(
-      { username: user.username, id: user.id },
+      { username: user.username, id: user.id, usertype: user.usertype },
       "importantsecret"
     );
 
