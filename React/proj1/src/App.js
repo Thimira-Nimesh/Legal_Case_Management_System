@@ -25,6 +25,7 @@ import { AuthContext } from "../src/Helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Admin from "./Components/Admin";
+// import AdminHome from "../../../AdminPanel/Home/AdminHome";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -76,6 +77,7 @@ function App() {
           <Route path="/lawyerhome" element={<Lawyerhome />} />
           <Route path="/judgehome" element={<Judgehome />} />
           <Route path="/dailyschedule" element={<DailySchedule />} />
+          {/* <Route path="/adminhome" element={<AdminHomeS />} /> */}
         </Routes>
       </AuthContext.Provider>
     </div>
