@@ -16,6 +16,7 @@ function Adminhome() {
           <Widgets type="earnings" />
           <Widgets type="balance" />
         </div>
+        <div className="charts"></div>
       </div>
     </div>
   );
