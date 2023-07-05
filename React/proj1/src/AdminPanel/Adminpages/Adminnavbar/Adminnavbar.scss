@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&family=Poppins:ital,wght@0,200;0,300;1,500&family=Roboto:wght@300&family=Titillium+Web:wght@300;400;700&display=swap");
+
+.adminnavbar {
+  height: 50px;
+  border-bottom: 0.5px solid rgb(232, 227, 227);
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #555;
+  font-family: "Nunito Sans", sans-serif;
+
+  .adminwrapper {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    .search {
+      display: flex;
+      align-items: center;
+      border: 0.5px solid rgb(238, 231, 231);
+      padding: 3px;
+
+      input {
+        border: none;
+        outline: none;
+        background: transparent;
+
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+    }
+
+    .adminitems {
+      display: flex;
+      align-items: center;
+
+      .adminitem {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        position: relative;
+
+        .adminicon {
+          font-size: 20px;
+        }
+
+        .avatar {
+          width: 32px;
+          height: 30px;
+          border-radius: 50%;
+        }
+
+        .counter {
+          width: 15px;
+          height: 15px;
+          background-color: red;
+          border-radius: 50%;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 10px;
+          font-weight: bold;
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
+      }
+    }
+  }
+}
