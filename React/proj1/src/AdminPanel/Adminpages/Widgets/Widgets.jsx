@@ -18,7 +18,12 @@ function Widgets({ type }) {
         title: "USERS",
         isMoney: false,
         link: "See all users",
-        icon2: <PersonOutlineRoundedIcon className="icon2" />,
+        icon2: (
+          <PersonOutlineRoundedIcon
+            className="icon2"
+            style={{ color: "black", backgroundColor: "crimson" }}
+          />
+        ),
       };
       break;
     case "cases":
@@ -26,7 +31,12 @@ function Widgets({ type }) {
         title: "CASES",
         isMoney: false,
         link: "See all users",
-        icon2: <GavelRoundedIcon className="icon2" />,
+        icon2: (
+          <GavelRoundedIcon
+            className="icon2"
+            style={{ color: "black", backgroundColor: "crimson" }}
+          />
+        ),
       };
       break;
     case "earnings":
@@ -34,7 +44,12 @@ function Widgets({ type }) {
         title: "EARNINGS",
         isMoney: true,
         link: "View net earnings",
-        icon2: <PaidRoundedIcon className="icon2" />,
+        icon2: (
+          <PaidRoundedIcon
+            className="icon2"
+            style={{ color: "black", backgroundColor: "crimson" }}
+          />
+        ),
       };
       break;
     case "balance":
@@ -42,7 +57,12 @@ function Widgets({ type }) {
         title: "BALANCE",
         isMoney: false,
         link: "See details",
-        icon2: <AccountBalanceRoundedIcon className="icon2" />,
+        icon2: (
+          <AccountBalanceRoundedIcon
+            className="icon2"
+            style={{ color: "black", backgroundColor: "crimson" }}
+          />
+        ),
       };
       break;
     default:
@@ -51,7 +71,7 @@ function Widgets({ type }) {
 
   return (
     <div className="widgets">
-      <div className="left">
+      <div className="left4">
         <span className="widgettitle">{data.title}</span>
         <span className="counter">
           {data.isMoney && "$"}
@@ -59,7 +79,7 @@ function Widgets({ type }) {
         </span>
         <span className="link">{data.link}</span>
       </div>
-      <div className="right">
+      <div className="left4">
         <div className="percentage positive">
           <KeyboardArrowUpRoundedIcon />
           {diff}%
