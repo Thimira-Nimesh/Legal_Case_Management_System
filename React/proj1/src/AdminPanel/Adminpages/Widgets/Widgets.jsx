@@ -1,10 +1,10 @@
 import React from "react";
 import "../Widgets/Widgets.scss";
 import KeyboardArrowUpRoundedIcon from "@mui/icons-material/KeyboardArrowUpRounded";
-import PersonOutlineRoundedIcon from "@mui/icons-material/PersonOutlineRounded";
 import GavelRoundedIcon from "@mui/icons-material/GavelRounded";
 import PaidRoundedIcon from "@mui/icons-material/PaidRounded";
 import AccountBalanceRoundedIcon from "@mui/icons-material/AccountBalanceRounded";
+import PersonIcon from "@mui/icons-material/Person";
 
 function Widgets({ type }) {
   let data;
@@ -19,9 +19,9 @@ function Widgets({ type }) {
         isMoney: false,
         link: "See all users",
         icon2: (
-          <PersonOutlineRoundedIcon
+          <PersonIcon
             className="icon2"
-            style={{ color: "black", backgroundColor: "crimson" }}
+            style={{ color: "black", backgroundColor: "pink" }}
           />
         ),
       };
@@ -30,11 +30,11 @@ function Widgets({ type }) {
       data = {
         title: "CASES",
         isMoney: false,
-        link: "See all users",
+        link: "See all cases",
         icon2: (
           <GavelRoundedIcon
             className="icon2"
-            style={{ color: "black", backgroundColor: "crimson" }}
+            style={{ color: "black", backgroundColor: "gray" }}
           />
         ),
       };
@@ -47,7 +47,7 @@ function Widgets({ type }) {
         icon2: (
           <PaidRoundedIcon
             className="icon2"
-            style={{ color: "black", backgroundColor: "crimson" }}
+            style={{ color: "green", backgroundColor: "lightgreen" }}
           />
         ),
       };
@@ -60,7 +60,7 @@ function Widgets({ type }) {
         icon2: (
           <AccountBalanceRoundedIcon
             className="icon2"
-            style={{ color: "black", backgroundColor: "crimson" }}
+            style={{ color: "black", backgroundColor: "gold" }}
           />
         ),
       };
