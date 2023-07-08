@@ -42,7 +42,7 @@ function Clientreg2() {
         navigate("/login");
       });
     } else if (data.usertype === "lawyer") {
-      axios.post("http://localhost:3001/clients", data).then((response) => {
+      axios.post("http://localhost:3001/auth", data).then((response) => {
         console.log(response.data);
         resetForm();
         navigate("/login");

@@ -99,6 +99,7 @@ router.post("/login", async (req, res) => {
 
 router.get("/auth2", validateToken, (req, res) => {
   res.json(req.user);
+  const username = req.user.username;
 });
 
 module.exports = router;

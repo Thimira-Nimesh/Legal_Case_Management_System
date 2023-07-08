@@ -1,12 +1,39 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Home.css";
 import Navbar2 from "./Navbar2";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Footer from "./Footer";
+import axios from "axios";
 
 export default function Home() {
   const navigate = useNavigate();
+  const [authState, setAuthState] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/auth/auth2", {
+        headers: {
+          accessToken: localStorage.getItem("accessToken"),
+        },
+      })
+      .then((response) => {
+        if (response.data.error) {
+          setAuthState({ ...authState, status: false });
+        } else {
+          setAuthState({
+            username: response.data.username,
+            id: response.data.id,
+            status: true,
+          });
+        }
+      });
+    // Add authState as a dependency
+  }, [authState]);
 
   // const [fname, setfname] = useState("");
 
@@ -22,7 +49,9 @@ export default function Home() {
     <div className="bg-dark page-container">
       <div className="home-page-bg">
         <Navbar2 />
-
+        <div className="navbar5">
+          <p className="text-center">Welcome Back: {authState.username}</p>
+        </div>
         <Container className="text-center mt-5 text-white">
           <Row>
             <Col>

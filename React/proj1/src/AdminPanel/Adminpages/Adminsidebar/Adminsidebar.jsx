@@ -1,5 +1,5 @@
 import React from "react";
-import "../Adminpages/Adminsidebar/Adminsidebar.scss";
+import "../Adminsidebar/Adminsidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import GavelIcon from "@mui/icons-material/Gavel";

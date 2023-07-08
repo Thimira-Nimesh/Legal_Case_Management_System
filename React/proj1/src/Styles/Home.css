@@ -14,6 +14,16 @@
   height: 110vh;
 }
 
+.navbar5 {
+  padding: 1px;
+  background-color: gray;
+  font-size: 20px;
+  font-weight: bold;
+  justify-content: center;
+  justify-items: center;
+  margin-bottom: -35px;
+}
+
 .dark-transparent {
   margin-top: 0px;
   background-color: rgba(0, 0, 0, 0.6);

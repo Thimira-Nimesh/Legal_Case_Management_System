@@ -1,5 +1,5 @@
 import React from "react";
-import Adminsidebar from "../Adminpages/Adminsidebar";
+import Adminsidebar from "../Adminpages/Adminsidebar/Adminsidebar";
 import "../Adminhome/Adminhome.scss";
 import Adminnavbar from "../Adminpages/Adminnavbar/Adminnavbar";
 import Widgets from "../Adminpages/Widgets/Widgets";
@@ -21,7 +21,7 @@ function Adminhome() {
         </div>
         <div className="admincharts">
           <Featured />
-          <Chart />
+          <Chart title="Last 6 Months(Revenue)" aspect={2 / 1} />
         </div>
         <div className="listcontainer">
           <div className="listTitle">Latest Cases</div>

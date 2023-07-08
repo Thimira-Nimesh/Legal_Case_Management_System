@@ -1,5 +1,5 @@
 import React from "react";
-import Adminsidebar from "../Adminpages/Adminsidebar";
+import Adminsidebar from "../Adminpages/Adminsidebar/Adminsidebar";
 import Adminnavbar from "../Adminpages/Adminnavbar/Adminnavbar";
 import "../Adminlist/Adminlist.scss";
 import Datatable from "../Adminpages/datatable/Datatable";

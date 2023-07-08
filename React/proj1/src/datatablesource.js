@@ -26,14 +26,18 @@ export const userColumns = [
     field: "age",
     headername: "Age",
     width: 160,
-    cellRender: (params) => {
-      return <div className="cellWithStatus">{params.row.status}</div>;
-    },
   },
   {
     field: "status",
     headername: "Status",
     width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus  ${params.row.status}`}>
+          {params.row.status}
+        </div>
+      );
+    },
   },
 ];
 

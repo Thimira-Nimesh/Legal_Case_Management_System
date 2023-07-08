@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 // import { AuthContext } from "../src/Helpers/AuthContext";
 import { useState } from "react";
 // import axios from "axios";
+// import { AuthContext } from "../Helpers/AuthContext";
 
 function Navbar2() {
   const [authState, setAuthState] = useState(false);
@@ -19,6 +20,7 @@ function Navbar2() {
   }
 
   return (
+    // <AuthContext.Provider value={{ authState, setAuthState }}>
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
         <Navbar.Brand className="navbar-brand" href="">
@@ -48,6 +50,7 @@ function Navbar2() {
             <Nav.Link href="#deets" className="mx-3 mr-2">
               More deets
             </Nav.Link>
+
             <NavDropdown title="Username" id="collasible-nav-dropdown">
               <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">My Profile</NavDropdown.Item>
@@ -56,6 +59,7 @@ function Navbar2() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
+    // </AuthContext.Provider>
   );
 }
 

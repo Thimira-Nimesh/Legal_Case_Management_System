@@ -47,7 +47,7 @@ function App() {
       })
       .then((response) => {
         if (response.data.error) {
-          setAuthState({ ...authState, ststus: false });
+          setAuthState({ ...authState, status: false });
         } else {
           setAuthState({
             username: response.data.username,
@@ -56,8 +56,8 @@ function App() {
           });
         }
       });
-    setAuthState(true);
-  });
+    // Add authState as a dependency
+  }, [authState]);
 
   return (
     <div className="App">
