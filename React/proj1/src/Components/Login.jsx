@@ -31,8 +31,8 @@ function Login() {
   };
 
   return (
-    <div className=" gradient-border vh-60  outline">
-      <Container className=" vh-60">
+    <div className=" gradient-border vh-90  outline">
+      <Container className=" vh-90">
         <Row className="justify-content-center">
           <Col md={6}>
             <div className="loginlogo w-45">
@@ -45,8 +45,8 @@ function Login() {
             </div>
           </Col>
           <Col md={6}>
-            <div className="login-box  p-4 ">
-              <div className="text-center">
+            <div className="login-box mt-1 p-2 ">
+              <div className="text-center mt-1">
                 <h1 style={{ fontFamily: "Poppins', sans-serif" }}>
                   <strong>Login</strong>
                 </h1>
@@ -82,22 +82,8 @@ function Login() {
                   {" "}
                   Login{" "}
                 </Button>
-                <div className="mt-3">
-                  <p>Or sign in with:</p>
-                  <a
-                    href="https://myaccount.google.com"
-                    className="btn btn-primary ml-2"
-                  >
-                    Google
-                  </a>
-                  <a
-                    href="https://web.facebook.com/home.php?_rdc=1&_rdr"
-                    className="btn btn-primary"
-                  >
-                    Facebook
-                  </a>
-                </div>
-                <br />
+                <br></br>
+                <br></br>
                 <div>
                   <p>Don't have an account?</p>
                   <Link to="/clientreg2" className="btn btn-secondary">

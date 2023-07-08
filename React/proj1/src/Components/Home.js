@@ -35,21 +35,13 @@ export default function Home() {
     // Add authState as a dependency
   }, [authState]);
 
-  // const [fname, setfname] = useState("");
-
-  // const user = JSON.parse(localStorage.getItem("user-info"));
-  // if (user) {
-  //   setfname(user.fname);
-  // }
-
   const handleScheduleConsultation = () => {
     navigate("/appointment");
   };
   return (
     <div className="bg-dark page-container">
       <div className="home-page-bg">
-        <Navbar2 />
-        <div className="navbar5">
+        <div className="navbar5" style={{ marginTop: 0 }}>
           <p className="text-center">Welcome Back: {authState.username}</p>
         </div>
         <Container className="text-center mt-5 text-white">

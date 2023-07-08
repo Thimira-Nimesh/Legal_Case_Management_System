@@ -15,13 +15,14 @@
 }
 
 .navbar5 {
+  margin-top: 0;
   padding: 1px;
   background-color: gray;
   font-size: 20px;
   font-weight: bold;
   justify-content: center;
   justify-items: center;
-  margin-bottom: -35px;
+  margin-bottom: 0px;
 }
 
 .dark-transparent {

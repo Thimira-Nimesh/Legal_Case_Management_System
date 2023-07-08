@@ -30,6 +30,7 @@ import Adminlogin from "./AdminPanel/Adminlogin/Adminlogin";
 import Adminlist from "./AdminPanel/Adminlist/Adminlist";
 import Adminsingle from "./AdminPanel/Adminsingle/Adminsingle";
 import Adminnew from "./AdminPanel/Adminnew/Adminnew";
+import Navbar2 from "./Components/Navbar2";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -62,12 +63,15 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider value={{ authState, setAuthState }}>
+        <Navbar2 />
         <Routes>
           <Route path="/" element={<Test />} />
           <Route path="/clientreg2" element={<Clientreg2 />} />
           <Route path="/lawyerreg2" element={<Lawyerreg2 />} />
-          <Route path="/login" element={<Login />} />
+
           <Route path="/home" element={<Home />} />
+
+          <Route path="/login" element={<Login />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/cases" element={<Cases />} />
           <Route path="/about" element={<About />} />
