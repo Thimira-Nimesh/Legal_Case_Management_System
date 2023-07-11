@@ -24,13 +24,13 @@ import "../src/Helpers/AuthContext";
 import { AuthContext } from "../src/Helpers/AuthContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Admin from "./Components/Admin";
 import Adminhome from "./AdminPanel/Adminhome/Adminhome";
 import Adminlogin from "./AdminPanel/Adminlogin/Adminlogin";
 import Adminlist from "./AdminPanel/Adminlist/Adminlist";
 import Adminsingle from "./AdminPanel/Adminsingle/Adminsingle";
 import Adminnew from "./AdminPanel/Adminnew/Adminnew";
 import Navbar2 from "./Components/Navbar2";
+import MyProfile from "./Components/MyProfile";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -68,11 +68,8 @@ function App() {
           <Route path="/" element={<Test />} />
           <Route path="/clientreg2" element={<Clientreg2 />} />
           <Route path="/lawyerreg2" element={<Lawyerreg2 />} />
-
           <Route path="/home" element={<Home />} />
-
           <Route path="/login" element={<Login />} />
-          <Route path="/admin" element={<Admin />} />
           <Route path="/cases" element={<Cases />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
@@ -85,6 +82,7 @@ function App() {
           <Route path="/lawyerhome" element={<Lawyerhome />} />
           <Route path="/judgehome" element={<Judgehome />} />
           <Route path="/dailyschedule" element={<DailySchedule />} />
+          <Route path="/profile/:id" element={<MyProfile />} />
 
           <Route path="/admin/">
             <Route index element={<Adminhome />} />

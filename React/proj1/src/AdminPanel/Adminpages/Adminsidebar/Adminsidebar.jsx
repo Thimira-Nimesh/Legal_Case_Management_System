@@ -12,6 +12,7 @@ import BookRoundedIcon from "@mui/icons-material/BookRounded";
 import SettingsRoundedIcon from "@mui/icons-material/SettingsRounded";
 import AssignmentIndRoundedIcon from "@mui/icons-material/AssignmentIndRounded";
 import LogoutRoundedIcon from "@mui/icons-material/LogoutRounded";
+import { Link } from "react-router-dom";
 
 function Adminsidebar() {
   return (
@@ -25,11 +26,16 @@ function Adminsidebar() {
           <p className="title">Main</p>
           <li>
             <DashboardIcon className="icons" />
-            <span>Dashboard</span>
+            <Link to="/admin">
+              <span>Dashboard</span>
+            </Link>
           </li>
           <li>
             <GavelIcon className="icons" />
-            <span>Cases</span>
+
+            <Link to="/cases">
+              <span>Cases</span>
+            </Link>
           </li>
           <li>
             <CalendarMonthIcon className="icons" />

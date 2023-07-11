@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Home.css";
-import Navbar2 from "./Navbar2";
+
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Footer from "./Footer";
 import axios from "axios";
@@ -42,7 +42,7 @@ export default function Home() {
     <div className="bg-dark page-container">
       <div className="home-page-bg">
         <div className="navbar5" style={{ marginTop: 0 }}>
-          <p className="text-center">Welcome Back: {authState.username}</p>
+          <p className="text-cent">Welcome Back: {authState.username}</p>
         </div>
         <Container className="text-center mt-5 text-white">
           <Row>

@@ -11,19 +11,18 @@ import { AuthContext } from "../Helpers/AuthContext";
 
 function Navbar2() {
   // const [authState, setAuthState] = useState(false);
-
-  const navigate = useNavigate();
-  function logout() {
-    localStorage.removeItem("accessToken");
-    setAuthState({ ...authState, ststus: false });
-    navigate("/");
-  }
-
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
     status: false,
   });
+
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem("accessToken");
+    setAuthState({ ...authState, status: false });
+    navigate("/");
+  }
 
   useEffect(() => {
     axios
@@ -82,18 +81,16 @@ function Navbar2() {
                 </>
               ) : (
                 <NavDropdown title="Username" id="collasible-nav-dropdown">
-                  <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
-
-                  <NavDropdown.Item href="#action/3.2">
+                  <NavDropdown.Item href="/profile">
                     My Profile
                   </NavDropdown.Item>
+                  <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>
         </Container>
-      </Navbar>
-      //{" "}
+      </Navbar>{" "}
     </AuthContext.Provider>
   );
 }

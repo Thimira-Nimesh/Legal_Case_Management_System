@@ -102,4 +102,14 @@ router.get("/auth2", validateToken, (req, res) => {
   const username = req.user.username;
 });
 
+router.get("/basicinfo/id", async (req, res) => {
+  const id = req.params.id;
+
+  const basicinfo = await Users.findByPk(id, {
+    attributes: { exclude: ["password"] },
+  });
+
+  res.json("basicinfo");
+});
+
 module.exports = router;

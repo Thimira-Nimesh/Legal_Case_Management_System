@@ -1,6 +1,6 @@
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// import * as Yup from "yup";
+import * as Yup from "yup";
 import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,17 +21,23 @@ function Clientreg2() {
     password: "",
   };
 
-  //   const validationSchema = Yup.object({
-  //     name: Yup.string().required("Name is required"),
-  //     address: Yup.string().required("Address is required"),
-  //     contact: Yup.string().required("Contact is required"),
-  //     nic: Yup.string().required("NIC is required"),
-  //     // usertype: Yup.string().required("User Type is required"),
-  //     email: Yup.string()
-  //       .email("Invalid email address")
-  //       .required("Email is required"),
-  //     password: Yup.string().required("Password is required"),
-  //   });
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required"),
+    address: Yup.string().required("Address is required"),
+    contact: Yup.string().required("Contact is required"),
+    nic: Yup.string()
+      .matches(/^[0-9]{9}[vVxX]$/, "Invalid NIC number")
+      .required("NIC is required"),
+    email: Yup.string()
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/,
+        "Invalid password"
+      )
+      .required("Password is required"),
+  });
 
   const onSubmit = (data, { resetForm }) => {
     console.log(data);
@@ -52,8 +58,8 @@ function Clientreg2() {
 
   return (
     <div className="main2">
-      <div className="gradient-border vh-60">
-        <Container className="vh-60">
+      <div className="gradient-border vh-80">
+        <Container className="vh-80">
           <Row className="justify-content-center">
             <Col md={6}>
               <div className="loginlogo w-45">
@@ -81,7 +87,7 @@ function Clientreg2() {
                   <div className="createclientpage">
                     <Formik
                       initialValues={{ ...initialValues }}
-                      //   validationSchema={validationSchema}
+                      validationSchema={validationSchema}
                       onSubmit={onSubmit}
                     >
                       <Form className="formContainer">
