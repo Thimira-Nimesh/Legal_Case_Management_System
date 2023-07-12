@@ -18,6 +18,9 @@ app.use("/lawyers", lawyerRouter);
 const caseRouter = require("./routes/Cases");
 app.use("/cases", caseRouter);
 
+const commentsRouter = require("./routes/Comments");
+app.use("/comments", commentsRouter);
+
 const usersRouter = require("./routes/Users");
 app.use("/auth", usersRouter);
 

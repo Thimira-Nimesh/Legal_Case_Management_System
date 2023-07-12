@@ -181,7 +181,7 @@ export default function Home() {
                 </p>
                 <br></br>
                 <button
-                  className="btn btn-warning rounded-pill  "
+                  className="btn btn-warning rounded-pill viewbtn  "
                   onClick={() => (window.location.href = "/contact")}
                 >
                   Contact Us
@@ -208,7 +208,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="viewbtn btn btn-warning rounded-pill justify-content-center "
+                    className=" btn btn-warning rounded-pill justify-content-center viewbtn  "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/Corporate_law")
@@ -239,7 +239,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://www.britannica.com/topic/labour-law")
@@ -272,7 +272,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn  "
                     onClick={() =>
                       (window.location.href =
                         "https://www.findlaw.com/hirealawyer/choosing-the-right-lawyer/family-law.html")
@@ -303,7 +303,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/Civil_law_(legal_system)")
@@ -335,7 +335,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/Criminal_law")
@@ -369,7 +369,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/IT_law")
@@ -400,7 +400,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/Environmental_law")
@@ -431,7 +431,7 @@ export default function Home() {
                   </p>
 
                   <button
-                    className="btn btn-warning rounded-pill justify-content-center"
+                    className="btn btn-warning rounded-pill justify-content-center viewbtn "
                     onClick={() =>
                       (window.location.href =
                         "https://en.wikipedia.org/wiki/International_law")

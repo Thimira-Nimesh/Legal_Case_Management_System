@@ -21,5 +21,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
+
+  Case.associate = (models) => {
+    Case.hasMany(models.Comments, {
+      onDelete: "cascade",
+    });
+  };
   return Case;
 };

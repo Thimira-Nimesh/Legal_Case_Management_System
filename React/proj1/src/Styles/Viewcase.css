@@ -1,0 +1,124 @@
+.casepage {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid rgb(16, 16, 16); */
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.caseleft {
+  flex: 50%;
+  height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  border: 2px solid rgb(16, 16, 16);
+}
+
+.caseright {
+  flex: 50%;
+  height: calc(100vh - 70px);
+  display: grid;
+  place-items: center;
+}
+
+.caseright .addcommentcontainer {
+  flex: 20%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin-top: 25px;
+}
+
+.addcommentcontainer input,
+button {
+  width: 400px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+}
+
+.addcommentcontainer button {
+  background-color: dodgerblue;
+  width: 400px;
+  color: white;
+}
+
+.addcommentcontainer input {
+  border: 2px solid dodgerblue;
+}
+
+.caseright .listofcomments {
+  flex: 80%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.listofcomments .comment {
+  width: 70%;
+  height: auto;
+  padding: 30px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+#individual {
+  height: 500px;
+  width: 600px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+#individual:hover {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  cursor: pointer;
+}
+
+#individual .casecode {
+  font-size: 30px;
+  flex: 20%;
+  border-bottom: 1px solid lightgray;
+  display: grid;
+  place-content: center;
+  color: white;
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  background-color: rgb(0, 6, 12);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+#individual .casetitle,
+#individual .caselawyer,
+#individual .caseowner {
+  font-size: 20px;
+  flex: 20%;
+  border-bottom: 1px solid lightgray;
+  background-color: rgb(138, 186, 234);
+  /* display: grid; */
+  place-content: center;
+  color: rgb(12, 12, 12);
+  border-top: 1px solid lightgray;
+  display: flex;
+  align-items: center;
+  padding-left: 15px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 60px;
+}
+
+#individual .casedesc {
+  font-size: 20px;
+  flex: 60%;
+  display: grid;
+  /* place-content: ; */
+  height: 272px;
+  border: 1;
+  padding: 20px;
+}

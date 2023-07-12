@@ -30,7 +30,8 @@ import Adminlist from "./AdminPanel/Adminlist/Adminlist";
 import Adminsingle from "./AdminPanel/Adminsingle/Adminsingle";
 import Adminnew from "./AdminPanel/Adminnew/Adminnew";
 import Navbar2 from "./Components/Navbar2";
-import MyProfile from "./Components/MyProfile";
+// import MyProfile from "./Components/MyProfile";
+import ViewCase from "./Components/ViewCase";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -71,6 +72,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/cases" element={<Cases />} />
+          <Route path="/viewcase/:id" element={<ViewCase />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/clientform" element={<ClientForm />} />
@@ -82,7 +84,7 @@ function App() {
           <Route path="/lawyerhome" element={<Lawyerhome />} />
           <Route path="/judgehome" element={<Judgehome />} />
           <Route path="/dailyschedule" element={<DailySchedule />} />
-          <Route path="/profile/:id" element={<MyProfile />} />
+          {/* <Route path="/profile/:id" element={<MyProfile />} /> */}
 
           <Route path="/admin/">
             <Route index element={<Adminhome />} />
