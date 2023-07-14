@@ -1,10 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const { Case } = require("../models");
+const { Case, Noted } = require("../models");
+const { validateToken } = require("../middleware/AuthMiddleware");
+const { validateToken } = require();
 
-router.get("/", async (req, res) => {
+router.get("/", validateToken, async (req, res) => {
   try {
-    const listofcases = await Case.findAll();
+    const listofcases = await Case.findAll({ include: [Noted] });
     res.json(listofcases);
   } catch (error) {
     // Handle the error appropriately

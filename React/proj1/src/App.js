@@ -6,9 +6,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
-import SelectionPage from "./Components/Selection";
 import ClientForm from "./Components/Client-signup";
-import LawyerForm from "./Components/Lawyer-signup";
 import JudgeForm from "./Components/Judge-signup";
 import Appointment from "./Components/Appointment";
 import Viewappointments from "./Components/Viewappointments";
@@ -32,6 +30,7 @@ import Adminnew from "./AdminPanel/Adminnew/Adminnew";
 import Navbar2 from "./Components/Navbar2";
 // import MyProfile from "./Components/MyProfile";
 import ViewCase from "./Components/ViewCase";
+import PageNotFound from "./Components/PageNotFound";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -76,15 +75,14 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/clientform" element={<ClientForm />} />
-          <Route path="/lawyerform" element={<LawyerForm />} />
           <Route path="/judgeform" element={<JudgeForm />} />
-          <Route path="/selection" element={<SelectionPage />} />
           <Route path="/appointment" element={<Appointment />} />
           <Route path="/viewappointment" element={<Viewappointments />} />
           <Route path="/lawyerhome" element={<Lawyerhome />} />
           <Route path="/judgehome" element={<Judgehome />} />
           <Route path="/dailyschedule" element={<DailySchedule />} />
           {/* <Route path="/profile/:id" element={<MyProfile />} /> */}
+          <Route path="*" exact element={<PageNotFound />} />
 
           <Route path="/admin/">
             <Route index element={<Adminhome />} />

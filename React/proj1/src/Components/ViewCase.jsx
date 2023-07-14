@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import "../Styles/Viewcase.css";
+import { AuthContext } from "../Helpers/AuthContext";
 
 function ViewCase() {
   let { id } = useParams();
+  const navigate = useNavigate();
   const [caseObject, setCaseObject] = useState({});
   const [comments, setComments] = useState([]);
   const [newComment, setNewComment] = useState("");
+  const { authState } = useContext(AuthContext);
 
   useEffect(() => {
     axios.get(`http://localhost:3001/cases/byId/${id}`).then((response) => {
@@ -37,6 +40,30 @@ function ViewCase() {
     }
   };
 
+  const deleteComment = (id) => {
+    axios
+      .delete(`http://localhost:3001/comments/${id}`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => {
+        setComments(
+          comments.filter((val) => {
+            return val.id != id;
+          })
+        );
+      });
+  };
+
+  const deleteCase = (id) => {
+    axios
+      .delete(`http://localhost:3001/posts/${id}`, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then(() => {
+        navigate("/");
+      });
+  };
+
   return (
     <div className="casepage">
       <div className="caseleft">
@@ -56,6 +83,19 @@ function ViewCase() {
           </div>
           <div className="caseowner">
             <strong>Case Owner:</strong> {caseObject.CaseOwner}
+          </div>
+          <div className="footer">
+            {caseObject.username}
+            {authState.username === caseObject.username && (
+              <button
+                onClick={() => {
+                  deleteCase(caseObject.id);
+                }}
+              >
+                {" "}
+                Delete Case
+              </button>
+            )}
           </div>
         </div>
       </div>
@@ -77,6 +117,16 @@ function ViewCase() {
             return (
               <div key={key} className="comment">
                 {comment.Commentbody}
+                <label> Username: {comment.username}</label>
+                {authState.username === comment.username && (
+                  <button
+                    onClick={() => {
+                      deleteComment(comment.id);
+                    }}
+                  >
+                    Delete Comment
+                  </button>
+                )}
               </div>
             );
           })}
