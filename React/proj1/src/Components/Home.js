@@ -8,6 +8,7 @@ import axios from "axios";
 
 export default function Home() {
   const navigate = useNavigate();
+
   const [authState, setAuthState] = useState({
     username: "",
     id: 0,
@@ -24,20 +25,22 @@ export default function Home() {
       .then((response) => {
         if (response.data.error) {
           setAuthState({ ...authState, status: false });
+          navigate("/login"); // Redirect to login page if authentication fails
         } else {
           setAuthState({
             username: response.data.username,
             id: response.data.id,
             status: true,
           });
+          // navigate("/home"); // Remove this line, as the user is already on the home page
         }
       });
-    // Add authState as a dependency
-  }, [authState]);
+  }, [authState.status, navigate]);
 
   const handleScheduleConsultation = () => {
     navigate("/appointment");
   };
+
   return (
     <div className="bg-dark page-container">
       <div className="home-page-bg">

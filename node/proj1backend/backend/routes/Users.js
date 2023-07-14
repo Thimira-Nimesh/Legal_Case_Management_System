@@ -41,7 +41,8 @@ router.post("/login", async (req, res) => {
 
     const accessToken = sign(
       { username: user.username, id: user.id, usertype: user.usertype },
-      "importantsecret"
+      "importantsecret",
+      { expiresIn: "1h" }
     );
 
     // Send the access token in the response

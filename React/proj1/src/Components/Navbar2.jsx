@@ -80,11 +80,14 @@ function Navbar2() {
                   </Nav.Link>
                 </>
               ) : (
-                <NavDropdown title="Username" id="collasible-nav-dropdown">
+                <NavDropdown
+                  title={authState.username}
+                  id="collasible-nav-dropdown"
+                >
                   <NavDropdown.Item href="/profile">
                     My Profile
                   </NavDropdown.Item>
-                  <NavDropdown.Item onClick={logout}>logout</NavDropdown.Item>
+                  <NavDropdown.Item onClick={logout}>Logout</NavDropdown.Item>
                 </NavDropdown>
               )}
             </Nav>

@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const { Case, Noted } = require("../models");
 const { validateToken } = require("../middleware/AuthMiddleware");
-const { validateToken } = require();
 
 router.get("/", validateToken, async (req, res) => {
   try {

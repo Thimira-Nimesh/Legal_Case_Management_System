@@ -31,8 +31,15 @@ export default function Cases() {
     });
   };
 
+  function viewcases() {
+    navigate("/");
+  }
+
   return (
     <div>
+      <div>
+        <button onClick={viewcases}>View Current Cases</button>
+      </div>
       <div className="createcasepage">
         <Formik
           initialValues={initialValues}
