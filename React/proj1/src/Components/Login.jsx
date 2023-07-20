@@ -6,6 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Helpers/AuthContext";
 
 function Login() {
+  const [authState] = useState({
+    username: "",
+    id: 0,
+    status: false,
+  });
+
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -13,16 +19,29 @@ function Login() {
 
   const login = () => {
     const data = { username: username, password: password };
+
     axios
       .post("http://localhost:3001/auth/login", data)
       .then((response) => {
         if (response.data.error) {
-          alert(response.data.error);
+          console.log(response);
         } else {
           const accessToken = response.data.accessToken;
           localStorage.setItem("accessToken", accessToken);
           setAuthState(true);
-          navigate("/home");
+
+          // Redirect the user based on their usertype
+          const user = JSON.parse(atob(accessToken.split(".")[1])); // Decoding the JWT payload
+          switch (user.usertype) {
+            case "admin":
+              navigate("/admin");
+              break;
+            case "lawyer":
+              navigate("/lawyerhome");
+              break;
+            case "client":
+              navigate("/home");
+          }
         }
       })
       .catch((error) => {

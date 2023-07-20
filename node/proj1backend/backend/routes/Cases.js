@@ -3,9 +3,9 @@ const router = express.Router();
 const { Case, Noted } = require("../models");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
-router.get("/", validateToken, async (req, res) => {
+router.get("/", async (req, res) => {
   try {
-    const listofcases = await Case.findAll({ include: [Noted] });
+    const listofcases = await Case.findAll({});
     res.json(listofcases);
   } catch (error) {
     // Handle the error appropriately
@@ -33,6 +33,26 @@ router.post("/", async (req, res) => {
     res
       .status(400)
       .json({ error: "Validation error: Please provide all required fields" });
+  }
+});
+
+//------
+
+router.get("/byUserId/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    // Use Sequelize to find all cases associated with the specified user ID
+    const casesByUserId = await Case.findAll({
+      where: {
+        UserId: userId,
+      },
+    });
+
+    res.json(casesByUserId);
+  } catch (error) {
+    // Handle the error appropriately
+    console.error(error);
+    res.status(500).json({ error: "An error occurred while retrieving cases" });
   }
 });
 

@@ -41,8 +41,7 @@ router.post("/login", async (req, res) => {
 
     const accessToken = sign(
       { username: user.username, id: user.id, usertype: user.usertype },
-      "importantsecret",
-      { expiresIn: "1h" }
+      "importantsecret"
     );
 
     // Send the access token in the response
@@ -62,7 +61,33 @@ router.get("/basicinfo/id", async (req, res) => {
     attributes: { exclude: ["password"] },
   });
 
-  res.json("basicinfo");
+  res.json(basicinfo);
+});
+
+router.get("/a", async (req, res) => {
+  try {
+    const listofUsers = await Users.findAll();
+    res.json(listofUsers);
+  } catch (error) {
+    // Handle the error appropriately
+    console.error(error);
+    res
+      .status(500)
+      .json({ error: "An error occurred while retrieving lawyers" });
+  }
+});
+
+router.get("/lawyers", async (req, res) => {
+  try {
+    const lawyers = await Users.findAll({
+      where: { usertype: "lawyer" },
+      attributes: ["UserId", "username"],
+    });
+
+    res.json(lawyers);
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch lawyers' information." });
+  }
 });
 
 module.exports = router;

@@ -5,7 +5,6 @@ import axios from "axios";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Clientreg2.css";
-import "../Components/ClientsignupValidation";
 
 function Clientreg2() {
   const navigate = useNavigate();

@@ -1,5 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Users = sequelize.define("Users", {
+    UserId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
+
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -42,16 +49,14 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Users.associate = (models) => {
-    Users.hasMany(models.Noted, {
-      onDelete: "cascade",
+    // Users.hasMany(models.Noted, {
+    //   onDelete: "cascade",
+    // });
+
+    Users.hasMany(models.Case, {
+      foreignKey: "UserId",
     });
   };
-
-  //   Users.associate = (models) => {
-  //     Users.hasMany(models.Client, {
-  //       onDelete: "cascade",
-  //     });
-  //   };
 
   return Users;
 };

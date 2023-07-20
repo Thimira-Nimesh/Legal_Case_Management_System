@@ -5,7 +5,6 @@ import "../Styles/Home.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Footer from "./Footer";
 import "../Styles/Lawyerhome.css";
-import LawyerNavbar from "./LawyerNavbar";
 
 export default function Lawyerhome() {
   const navigate = useNavigate();
@@ -16,12 +15,10 @@ export default function Lawyerhome() {
   return (
     <div className="bg-dark lawyerpage-container">
       <div className="home-page-bg">
-        <LawyerNavbar />
-
-        <Container className="text-center mt-5 text-white">
+        <Container className="text-center mt text-white">
           <Row>
             <Col>
-              <div className="dark-transparent pt-3 pb-5">
+              <div className="dark-transparent mt-5 pt-3 pb-5">
                 <div className=" justify-content-center homelogo ">
                   <img
                     src="https://i.ibb.co/WV0JGgh/15-removebg-preview.png"

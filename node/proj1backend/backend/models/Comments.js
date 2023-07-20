@@ -6,5 +6,13 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  Comments.associate = (models) => {
+    Comments.belongsTo(models.Case, {
+      foriegnKey: "CaseId",
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
+    });
+  };
+
   return Comments;
 };

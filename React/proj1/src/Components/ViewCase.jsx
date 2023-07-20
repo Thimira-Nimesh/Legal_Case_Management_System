@@ -48,7 +48,7 @@ function ViewCase() {
       .then(() => {
         setComments(
           comments.filter((val) => {
-            return val.id != id;
+            return val.id !== id;
           })
         );
       });
@@ -56,7 +56,7 @@ function ViewCase() {
 
   const deleteCase = (id) => {
     axios
-      .delete(`http://localhost:3001/posts/${id}`, {
+      .delete(`http://localhost:3001/cases/${id}`, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then(() => {
@@ -117,7 +117,7 @@ function ViewCase() {
             return (
               <div key={key} className="comment">
                 {comment.Commentbody}
-                <label> Username: {comment.username}</label>
+                {/* <label> Username: {comment.username}</label> */}
                 {authState.username === comment.username && (
                   <button
                     onClick={() => {

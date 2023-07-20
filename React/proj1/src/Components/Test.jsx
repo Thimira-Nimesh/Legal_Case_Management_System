@@ -1,3 +1,42 @@
+// import React from "react";
+// import axios from "axios";
+// import { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+
+// function Test() {
+//   const [listofcases, setlistofcases] = useState([]);
+//   const navigate = useNavigate();
+
+//   useEffect(() => {
+//     axios.get("http://localhost:3001/cases").then((response) => {
+//       setlistofcases(response.data);
+//     });
+//   }, []);
+
+//   return (
+//     <div>
+//       {listofcases.map((value, key) => {
+//         return (
+//           <div
+//             className="cases"
+//             onClick={() => {
+//               navigate(`/viewcase/${value.id}`);
+//             }}
+//           >
+//             <div className="casetitle">{value.CaseCode}</div>
+//             <div className="body">{value.CaseTitle}</div>
+//             <div className="body1">{value.CaseFile}</div>
+//             <div className="body2">{value.CaseLawyer}</div>
+//             <div className="body3">{value.CaseOwner}</div>
+//           </div>
+//         );
+//       })}
+//     </div>
+//   );
+// }
+
+// export default Test;
+
 import React from "react";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";

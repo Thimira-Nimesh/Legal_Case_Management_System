@@ -32,7 +32,7 @@ function Appointment() {
 
   return (
     <>
-      <Navbar2 />
+      {/* <Navbar2 /> */}
       <Col md={0}>
         <div className="signup11">
           <section className="h-100 bg-dark">

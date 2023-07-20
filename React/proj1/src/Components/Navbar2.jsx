@@ -21,7 +21,7 @@ function Navbar2() {
   function logout() {
     localStorage.removeItem("accessToken");
     setAuthState({ ...authState, status: false });
-    navigate("/");
+    navigate("/login");
   }
 
   useEffect(() => {

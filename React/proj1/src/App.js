@@ -6,8 +6,7 @@ import About from "./Components/About";
 import Contact from "./Components/Contact";
 import Login from "./Components/Login";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ClientForm from "./Components/Client-signup";
-import JudgeForm from "./Components/Judge-signup";
+
 import Appointment from "./Components/Appointment";
 import Viewappointments from "./Components/Viewappointments";
 import Lawyerhome from "./Components/Lawyerhome";
@@ -31,6 +30,8 @@ import Navbar2 from "./Components/Navbar2";
 // import MyProfile from "./Components/MyProfile";
 import ViewCase from "./Components/ViewCase";
 import PageNotFound from "./Components/PageNotFound";
+import Sidebar from "./Components/Sidebar";
+import Viewcases from "./Components/Viewcases";
 
 function App() {
   const [authState, setAuthState] = useState({
@@ -54,6 +55,7 @@ function App() {
             username: response.data.username,
             id: response.data.id,
             status: true,
+            usertype: response.data.usertype,
           });
         }
       });
@@ -65,39 +67,53 @@ function App() {
       <AuthContext.Provider value={{ authState, setAuthState }}>
         <Navbar2 />
         <Routes>
-          <Route path="/" element={<Test />} />
           <Route path="/clientreg2" element={<Clientreg2 />} />
           <Route path="/lawyerreg2" element={<Lawyerreg2 />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/cases" element={<Cases />} />
-          <Route path="/viewcase/:id" element={<ViewCase />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/clientform" element={<ClientForm />} />
-          <Route path="/judgeform" element={<JudgeForm />} />
-          <Route path="/appointment" element={<Appointment />} />
-          <Route path="/viewappointment" element={<Viewappointments />} />
-          <Route path="/lawyerhome" element={<Lawyerhome />} />
+
+          {authState.usertype === "lawyer" && (
+            <>
+              <Route path="/lawyerhome" element={<Lawyerhome />} />
+              <Route path="/viewappointment" element={<Viewappointments />} />
+            </>
+          )}
+
+          {authState.usertype === "client" && (
+            <>
+              <Route path="/appointment" element={<Appointment />} />
+              <Route path="/viewcases" element={<Viewcases />} />
+            </>
+          )}
+
+          {authState.usertype === "admin" && (
+            <>
+              <Route path="/" element={<Test />} />
+              <Route path="/cases" element={<Cases />} />
+              <Route path="/viewcase/:id" element={<ViewCase />} />
+              <Route path="/admin/">
+                <Route index element={<Adminhome />} />
+                <Route path="adminlogin" element={<Adminlogin />} />
+                <Route path="users">
+                  <Route index element={<Adminlist />} />
+                  <Route path="userId" element={<Adminsingle />} />
+                  <Route path="new" element={<Adminnew />} />
+                </Route>
+                <Route path="cases">
+                  <Route index element={<Adminlist />} />
+                  <Route path="caseId" element={<Adminsingle />} />
+                  <Route path="new" element={<Adminnew />} />
+                </Route>
+              </Route>
+            </>
+          )}
+
           <Route path="/judgehome" element={<Judgehome />} />
           <Route path="/dailyschedule" element={<DailySchedule />} />
           {/* <Route path="/profile/:id" element={<MyProfile />} /> */}
           <Route path="*" exact element={<PageNotFound />} />
-
-          <Route path="/admin/">
-            <Route index element={<Adminhome />} />
-            <Route path="adminlogin" element={<Adminlogin />} />
-            <Route path="users">
-              <Route index element={<Adminlist />} />
-              <Route path="userId" element={<Adminsingle />} />
-              <Route path="new" element={<Adminnew />} />
-            </Route>
-            <Route path="cases">
-              <Route index element={<Adminlist />} />
-              <Route path="caseId" element={<Adminsingle />} />
-              <Route path="new" element={<Adminnew />} />
-            </Route>
-          </Route>
         </Routes>
       </AuthContext.Provider>
     </div>

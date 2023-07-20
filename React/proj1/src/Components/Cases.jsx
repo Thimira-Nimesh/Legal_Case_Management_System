@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "../Styles/Cases.css";
@@ -6,13 +6,17 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Cases() {
+  const [clientIds, setClientIds] = useState([]);
+  const [selectedLawyerID, setSelectedLawyerID] = useState(null);
+  const [selectedClientID, setSelectedClientID] = useState(null);
+  const [lawyers, setLawyers] = useState([]);
+
   const navigate = useNavigate();
   const initialValues = {
     CaseCode: "",
     CaseTitle: "",
     CaseFile: "",
     CaseLawyer: "",
-    CaseOwner: "",
   };
 
   const validationSchema = Yup.object().shape({
@@ -20,10 +24,11 @@ export default function Cases() {
     CaseTitle: Yup.string().required(),
     CaseFile: Yup.string().min(20).required(),
     CaseLawyer: Yup.string().required(),
-    CaseOwner: Yup.string().required(),
   });
 
   const onSubmit = (data) => {
+    data.UserId = selectedLawyerID;
+
     axios.post("http://localhost:3001/cases", data).then((response) => {
       console.log("It worked");
       alert("Case Added Successfully");
@@ -34,6 +39,34 @@ export default function Cases() {
   function viewcases() {
     navigate("/");
   }
+
+  useEffect(() => {
+    // Fetch client IDs from the backend API
+    axios
+      .get("http://localhost:3001/auth/a")
+      .then((response) => {
+        const clients = response.data.filter(
+          (user) => user.usertype === "client"
+        );
+        setClientIds(clients);
+      })
+      .catch((error) => {
+        console.error("Error fetching client IDs:", error);
+      });
+
+    // Fetch lawyers from the backend API
+    axios
+      .get("http://localhost:3001/auth/lawyers")
+      .then((response) => {
+        const lawyers = response.data.filter(
+          (user) => user.usertype === "lawyer"
+        );
+        setLawyers(lawyers);
+      })
+      .catch((error) => {
+        console.error("Error fetching lawyer IDs:", error);
+      });
+  }, []);
 
   return (
     <div>
@@ -47,7 +80,9 @@ export default function Cases() {
           validationSchema={validationSchema}
         >
           <Form className="submitformContainer">
-            <label>Case Code: </label>
+            <label>
+              <strong>Case Code:</strong>{" "}
+            </label>
             <Field
               id="inputCreateCase"
               name="CaseCode"
@@ -55,7 +90,9 @@ export default function Cases() {
             />
             <ErrorMessage name="CaseCode" component="span" />
 
-            <label>Case Title: </label>
+            <label>
+              <strong>Case Title: </strong>
+            </label>
             <Field
               id="inputCreateCase"
               name="CaseTitle"
@@ -63,7 +100,9 @@ export default function Cases() {
             />
             <ErrorMessage name="CaseTitle" component="span" />
 
-            <label>Case Description: </label>
+            <label>
+              <strong>Case Description: </strong>
+            </label>
             <Field
               id="inputCreateCase"
               name="CaseFile"
@@ -71,22 +110,43 @@ export default function Cases() {
             />
             <ErrorMessage name="CaseFile" component="span" />
 
-            <label>Assigned Lawyer: </label>
+            <label>
+              <strong>Assigned Lawyer:</strong>{" "}
+            </label>
             <Field
               id="inputCreateCase"
+              as="select"
               name="CaseLawyer"
               placeholder="Assigned Lawyer...."
-            />
+              onChange={(e) => setSelectedLawyerID(e.target.value)}
+            >
+              <option value="">Select a lawyer</option>
+              {lawyers.map((lawyer) => (
+                <option key={lawyer.UserId} value={lawyer.UserId}>
+                  {lawyer.username}
+                </option>
+              ))}
+            </Field>
             <ErrorMessage name="CaseLawyer" component="span" />
 
-            <label>Case Owner: </label>
+            {/* Dropdown for selecting the client */}
+            <label>
+              <strong>Select Client:</strong>{" "}
+            </label>
             <Field
               id="inputCreateCase"
-              name="CaseOwner"
-              placeholder="Case Owner..."
-            />
-            <ErrorMessage name="CaseOwner" component="span" />
-
+              as="select"
+              name="clientId"
+              onChange={(e) => setSelectedClientID(e.target.value)}
+            >
+              <option value="">Select a client</option>
+              {clientIds.map((client) => (
+                <option key={client.UserId} value={client.UserId}>
+                  {client.username}
+                </option>
+              ))}
+            </Field>
+            <ErrorMessage name="clientId" component="span" />
             <button type="submit">Add Case</button>
           </Form>
         </Formik>

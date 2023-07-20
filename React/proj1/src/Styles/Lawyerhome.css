@@ -1,3 +1,8 @@
 .lawyerpage-container {
   height: 178vh;
 }
+
+.lawyerpage-container {
+  margin: 0;
+  padding: 0;
+}

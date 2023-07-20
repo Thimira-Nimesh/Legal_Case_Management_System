@@ -5,6 +5,7 @@ import "../Styles/Home.css";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import Footer from "./Footer";
 import axios from "axios";
+import Sidebar from "./Sidebar";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -47,9 +48,12 @@ export default function Home() {
         <div className="navbar5" style={{ marginTop: 0 }}>
           <p className="text-cent">Welcome Back: {authState.username}</p>
         </div>
-        <Container className="text-center mt-5 text-white">
+        <Container fluid className="text-center mt-5 text-white">
           <Row>
-            <Col>
+            <Col md={2}>
+              <Sidebar />
+            </Col>
+            <Col md={10}>
               <div className="dark-transparent pt-3 pb-5">
                 <div className=" justify-content-center homelogo ">
                   <img
