@@ -23,22 +23,22 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    UserId: {
+      // Add the foreign key "UserId"
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   });
 
   Case.associate = (models) => {
     Case.hasMany(models.Comments, {
-      onDelete: "cascade",
-    });
-
-    Case.hasMany(models.Noted, {
-      foriegnKey: {
-        name: "CaseId",
-      },
-      onDelete: "cascade",
+      foreignKey: "CaseId",
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE",
     });
 
     Case.belongsTo(models.Users, {
-      foreignKey: "UserId",
+      foreignKey: "UserId", // Use the correct foreign key "UserId"
       onDelete: "CASCADE",
       onUpdate: "CASCADE",
     });

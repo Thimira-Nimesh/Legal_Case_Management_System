@@ -25,6 +25,7 @@ router.get("/byId/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     const cases = req.body;
+
     const createdCase = await Case.create(cases);
     res.status(201).json(createdCase);
   } catch (error) {

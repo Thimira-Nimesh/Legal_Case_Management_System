@@ -29,11 +29,15 @@ export default function Cases() {
   const onSubmit = (data) => {
     data.UserId = selectedLawyerID;
 
-    axios.post("http://localhost:3001/cases", data).then((response) => {
-      console.log("It worked");
-      alert("Case Added Successfully");
-      navigate("/");
-    });
+    axios
+      .post("http://localhost:3001/cases", data, {
+        headers: { accessToken: localStorage.getItem("accessToken") },
+      })
+      .then((response) => {
+        console.log("It worked");
+        alert("Case Added Successfully");
+        navigate("/");
+      });
   };
 
   function viewcases() {
@@ -56,7 +60,7 @@ export default function Cases() {
 
     // Fetch lawyers from the backend API
     axios
-      .get("http://localhost:3001/auth/lawyers")
+      .get("http://localhost:3001/auth/a")
       .then((response) => {
         const lawyers = response.data.filter(
           (user) => user.usertype === "lawyer"

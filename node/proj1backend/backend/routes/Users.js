@@ -77,17 +77,17 @@ router.get("/a", async (req, res) => {
   }
 });
 
-router.get("/lawyers", async (req, res) => {
-  try {
-    const lawyers = await Users.findAll({
-      where: { usertype: "lawyer" },
-      attributes: ["UserId", "username"],
-    });
+// router.get("/lawyers", async (req, res) => {
+//   try {
+//     const lawyers = await Users.findAll({
+//       where: { usertype: "lawyer" },
+//       attributes: ["UserId", "username"],
+//     });
 
-    res.json(lawyers);
-  } catch (error) {
-    res.status(500).json({ error: "Failed to fetch lawyers' information." });
-  }
-});
+//     res.json(lawyers);
+//   } catch (error) {
+//     res.status(500).json({ error: "Failed to fetch lawyers' information." });
+//   }
+// });
 
 module.exports = router;
