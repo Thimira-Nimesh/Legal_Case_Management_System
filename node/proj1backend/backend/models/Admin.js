@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const Lawyer = sequelize.define("Lawyer", {
-    LawyerId: {
+  const Admin = sequelize.define("Admin", {
+    AdminId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
@@ -31,5 +31,5 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
     },
   });
-  return Lawyer;
+  return Admin;
 };

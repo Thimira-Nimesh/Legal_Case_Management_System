@@ -1,39 +1,6 @@
-// const express = require("express");
-// const router = express.Router();
-// const { Client } = require("../models");
-
-// router.get("/", async (req, res) => {
-//   try {
-//     const listofclients = await Client.findAll();
-//     res.json(listofclients);
-//   } catch (error) {
-//     // Handle the error appropriately
-//     console.error(error);
-//     res
-//       .status(500)
-//       .json({ error: "An error occurred while retrieving clients" });
-//   }
-// });
-
-// router.post("/", async (req, res) => {
-//   try {
-//     const client = req.body;
-//     const createdClient = await Client.create(client);
-//     res.status(201).json(createdClient);
-//   } catch (error) {
-//     // Handle the validation error
-//     console.error(error);
-//     res
-//       .status(400)
-//       .json({ error: "Validation error: Please provide all required fields" });
-//   }
-// });
-
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
-const { Client } = require("../models"); // Import the Client model
+const { Admin } = require("../models"); // Import the Client model
 const bcrypt = require("bcrypt");
 const { sign } = require("jsonwebtoken");
 
@@ -42,10 +9,10 @@ router.post("/register", async (req, res) => {
   const { name, address, contact, nic, email, username, password } = req.body;
 
   // Check if the username already exists in the database
-  const existingClient = await Client.findOne({
+  const existingAdmin = await Admin.findOne({
     where: { username: username },
   });
-  if (existingClient) {
+  if (existingAdmin) {
     return res.json({ error: "Username already exists" });
   }
 
@@ -53,7 +20,7 @@ router.post("/register", async (req, res) => {
   bcrypt.hash(password, 10).then(async (hash) => {
     try {
       // Create the Client record in the database
-      const newClient = await Client.create({
+      const newAdmin = await Admin.create({
         name: name,
         address: address,
         contact: contact,
@@ -75,15 +42,15 @@ router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   // Find the client by the provided username
-  const client = await Client.findOne({ where: { username: username } });
+  const admin = await Admin.findOne({ where: { username: username } });
 
-  if (!client) {
-    res.json({ error: "Client not found" });
+  if (!admin) {
+    res.json({ error: "Admin not found" });
     return;
   }
 
   // Compare the provided password with the hashed password in the database
-  bcrypt.compare(password, client.password).then((match) => {
+  bcrypt.compare(password, admin.password).then((match) => {
     if (!match) {
       res.json({ error: "Incorrect password" });
       return;
@@ -91,7 +58,7 @@ router.post("/login", async (req, res) => {
 
     // Generate a JWT token for authentication
     const accessToken = sign(
-      { username: client.username, id: client.id, usertype: "client" },
+      { username: admin.username, id: admin.id, usertype: "admin" },
       "importantsecret"
     );
 

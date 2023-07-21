@@ -1,5 +1,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Client = sequelize.define("Client", {
+    ClientId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
     Name: {
       type: DataTypes.STRING,
       allowNull: false,
