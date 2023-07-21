@@ -5,7 +5,7 @@ import "../Styles/Viewcase.css";
 import { AuthContext } from "../Helpers/AuthContext";
 
 function ViewCase() {
-  let { id } = useParams();
+  let { id, username } = useParams();
   const navigate = useNavigate();
   const [caseObject, setCaseObject] = useState({});
   const [comments, setComments] = useState([]);
@@ -15,12 +15,13 @@ function ViewCase() {
   useEffect(() => {
     axios.get(`http://localhost:3001/cases/byId/${id}`).then((response) => {
       setCaseObject(response.data);
+      console.log(response.data);
     });
 
     axios.get(`http://localhost:3001/comments/${id}`).then((response) => {
       setComments(response.data);
     });
-  }, [id]);
+  }, []);
 
   const addComment = () => {
     if (newComment.trim() !== "") {
@@ -82,7 +83,7 @@ function ViewCase() {
             <strong>Case Assigned Lawyer:</strong> {caseObject.CaseLawyer}
           </div>
           <div className="caseowner">
-            <strong>Case Owner:</strong> {caseObject.CaseOwner}
+            <strong>Case Owner:</strong> {caseObject.UserId}
           </div>
           <div className="footer">
             {caseObject.username}

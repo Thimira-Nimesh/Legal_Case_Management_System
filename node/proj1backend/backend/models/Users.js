@@ -56,6 +56,11 @@ module.exports = (sequelize, DataTypes) => {
     Users.hasMany(models.Case, {
       foreignKey: "UserId",
     });
+
+    Users.belongsToMany(models.Appointment, {
+      through: "AppointmentUsers",
+      foreignKey: "UserId",
+    });
   };
 
   return Users;
