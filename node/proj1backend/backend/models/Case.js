@@ -23,6 +23,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+
+    CaseOwner: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     UserId: {
       // Add the foreign key "UserId"
       type: DataTypes.INTEGER,

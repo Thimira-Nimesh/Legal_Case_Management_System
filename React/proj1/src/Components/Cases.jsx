@@ -6,6 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Cases() {
+  const [stateVariable, setStateVariable] = useState();
   const [clientIds, setClientIds] = useState([]);
   const [selectedLawyerID, setSelectedLawyerID] = useState(null);
   const [selectedClientID, setSelectedClientID] = useState(null);
@@ -17,20 +18,25 @@ export default function Cases() {
     CaseTitle: "",
     CaseFile: "",
     CaseLawyer: "",
+    CaseOwner: "",
   };
 
   const validationSchema = Yup.object().shape({
     CaseCode: Yup.string().max(10).required(),
     CaseTitle: Yup.string().required(),
     CaseFile: Yup.string().min(20).required(),
-    CaseLawyer: Yup.string().required(),
+    // CaseLawyer: Yup.string().required(),
   });
 
   const onSubmit = (data) => {
-    data.UserId = selectedLawyerID;
+    const dt = {
+      ...data,
+      UserId: selectedClientID,
+      CaseLawyer: selectedLawyerID,
+    };
 
     axios
-      .post("http://localhost:3001/cases", data, {
+      .post("http://localhost:3001/cases", dt, {
         headers: { accessToken: localStorage.getItem("accessToken") },
       })
       .then((response) => {
@@ -49,6 +55,8 @@ export default function Cases() {
     axios
       .get("http://localhost:3001/auth/a")
       .then((response) => {
+        console.log(response.data);
+        setStateVariable(response.data);
         const clients = response.data.filter(
           (user) => user.usertype === "client"
         );
@@ -123,6 +131,7 @@ export default function Cases() {
               name="CaseLawyer"
               placeholder="Assigned Lawyer...."
               onChange={(e) => setSelectedLawyerID(e.target.value)}
+              value={selectedLawyerID}
             >
               <option value="">Select a lawyer</option>
               {lawyers.map((lawyer) => (
@@ -131,7 +140,6 @@ export default function Cases() {
                 </option>
               ))}
             </Field>
-            <ErrorMessage name="CaseLawyer" component="span" />
 
             {/* Dropdown for selecting the client */}
             <label>

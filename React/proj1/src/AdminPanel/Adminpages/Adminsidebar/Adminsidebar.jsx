@@ -44,7 +44,9 @@ function Adminsidebar() {
           <p className="title">Users</p>
           <li>
             <AccountCircleIcon className="icons" />
-            <span>Clients</span>
+            <Link to="/admin/users">
+              <span>Clients</span>
+            </Link>
           </li>
           <li>
             <LocalPoliceRoundedIcon className="icons" />
