@@ -3,7 +3,7 @@ const router = express.Router();
 const { Noted } = require("../models");
 const { validateToken } = require("../middleware/AuthMiddleware");
 
-router.post("/", validateToken, async (req, res) => {
+router.post("/",  async (req, res) => {
   const { CaseId } = req.body;
   const UserId = req.user.id;
 
